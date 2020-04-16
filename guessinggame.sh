@@ -1,9 +1,9 @@
 function Guess {
-  if [[ $number -ne 3 ]] && [[ $number -gt 3 ]]
+  if [[ $number -ne $file_num ]] && [[ $number -gt $file_num ]]
   then
     echo "Your guess is too high. Try again!"
     let count=$count+0
-  elif [[ $number -ne 3 ]] &&  [[ $number -lt 3 ]]
+  elif [[ $number -ne $file_num ]] &&  [[ $number -lt $file_num ]]
   then
     echo "Your guess is too low. Try again!"
     let count=$count+0
@@ -17,9 +17,10 @@ function Guess {
 count=0
 while [[ $count -eq 0 ]]
 do
-  echo "How many files are in the current directory (It is from 1  to 9):"
+  echo "How many files are in the current directory:"
   read number
   echo "You entered: $number"
+  file_num=$(ls -1 | wc -l)
   Guess
 done
 
